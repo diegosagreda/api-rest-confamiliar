@@ -52,7 +52,15 @@ const deleteArea = async (req, res) => {
     try {
       const response = await pool.query('DELETE FROM areas WHERE idarea = $1 RETURNING *',[idarea]);
       if(response.rowCount > 0) {
+
+        //Recorreos empleados y eliminamos la referencia de idarea
+        const response = await pool.query('SELECT * FROM empleados');
+        response.rows.forEach(empleado => {
+             pool.query('UPDATE empleados SET idarea = "0"  WHERE cedula = $2',[empleado.cedula]);
+        });
+
         res.status(200).json(response.rows);
+
       }else{
         res.status(400);
       }
