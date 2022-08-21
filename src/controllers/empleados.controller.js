@@ -43,7 +43,7 @@ const createEmpleado = async (req, res) => {
     const {cedula,nombre,telefono,email,ciudad_nacimiento,fecha_nacimiento,ciudad_expedicion,fecha_expedicion,tipo_sangre,sexo,estado_civil,idarea,rol,ciudad_residencia,direccion_residencia,salario} = req.body;
 
    
-     //Fernadna
+     //Fernadnaaaaa
         try {
             const response = await pool.query('INSERT INTO empleados(cedula,nombre,telefono,email,ciudad_nacimiento,fecha_nacimiento,ciudad_expedicion,fecha_expedicion,tipo_sangre,sexo,estado_civil,idarea,rol,ciudad_residencia,direccion_residencia,salario) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)',[cedula,nombre,telefono,email,ciudad_nacimiento,fecha_nacimiento,ciudad_expedicion,fecha_expedicion,tipo_sangre,sexo,estado_civil,idarea,rol,ciudad_residencia,direccion_residencia,salario]);
             if(response.rowCount > 0) {
