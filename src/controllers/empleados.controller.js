@@ -82,6 +82,8 @@ const deleteEmpleado = async (req, res) => {
     try {
       const response = await pool.query('DELETE FROM empleados WHERE cedula = $1 RETURNING *',[cedula]);
       if(response.rowCount > 0) {
+        await pool.query('DELETE FROM usuarios WHERE cedula = $1 RETURNING *',[cedula])
+        await pool.query('DELETE FROM observaciones WHERE cedula = $1 RETURNING *',[cedula])
         res.status(200).json(response.rows);
       }else{
         res.status(400);
